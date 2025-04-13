@@ -1,4 +1,3 @@
-// client-web/providers/app-wrapper.tsx
 'use client';
 
 import { ReactNode } from 'react';

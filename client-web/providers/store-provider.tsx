@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 
 import { AppWrapper } from '@/providers/app-wrapper'
 
-import { store, persistor } from '@/store'
+import { store, persistor } from '@/store/'
 
 export const StoreProvider = ({ children }: { children: React.ReactNode }) => (
   <Provider store={store}>

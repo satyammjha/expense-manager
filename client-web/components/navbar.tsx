@@ -28,7 +28,7 @@ export default function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem('session');
     setIsAuthenticated(false);
-    router.push('/auth/login');
+    router.push('/');
   };
 
   return (
@@ -47,14 +47,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              onClick={() => handleNavigation('/')}
-              className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-            >
-              Home
-            </Button>
-
+            
             {isAuthenticated ? (
               <Button
                 variant="ghost"
@@ -65,24 +58,10 @@ export default function Navbar() {
               </Button>
             ) : (
               <>
-                <Button
-                  variant="ghost"
-                  onClick={() => handleNavigation('/auth/login')}
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  Login
-                </Button>
-                <Button
-                  variant="ghost"
-                  onClick={() => handleNavigation('/auth/signup')}
-                  className="text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  Sign Up
-                </Button>
+
               </>
             )}
 
-            {/* Theme Toggle */}
             <Button
               variant="ghost"
               size="icon"
@@ -118,13 +97,7 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Button
-                variant="ghost"
-                onClick={() => handleNavigation('/')}
-                className="w-full justify-start text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Home
-              </Button>
+              
 
               {isAuthenticated ? (
                 <Button

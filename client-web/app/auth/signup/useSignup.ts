@@ -6,20 +6,20 @@ import { toast } from 'sonner';
 
 export const useSignup = () => {
 
+    const router = useRouter();
+    const [form, setForm] = useState({ name: '', email: '', password: '' });
+    const [loading, setLoading] = useState(false);
+    const isValid = form.name && form.email && form.password.length >= 6;
+
     useEffect(() => {
         const session = JSON.parse(localStorage.getItem('session') || 'null');
         const now = new Date().getTime();
         if (session && now - session.loginTime < 10 * 60 * 1000) {
             router.push('/dashboard');
         }
-    }, []);
+    }, [router]);
 
 
-    const router = useRouter();
-    const [form, setForm] = useState({ name: '', email: '', password: '' });
-    const [loading, setLoading] = useState(false);
-
-    const isValid = form.name && form.email && form.password.length >= 6;
 
     const handleChange = (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [field]: e.target.value });

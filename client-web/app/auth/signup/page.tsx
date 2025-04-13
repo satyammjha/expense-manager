@@ -14,7 +14,7 @@ export default function SignupPage() {
     if (session && now - session.loginTime < 10 * 60 * 1000) {
       router.push('/dashboard');
     }
-  }, []);
+  }, [router]);
   
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

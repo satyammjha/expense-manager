@@ -13,8 +13,16 @@ interface ExpensesState {
 }
 
 const initialState: ExpensesState = {
-  expenses: JSON.parse(localStorage.getItem('expenses') || '[]'),
+  expenses: [],
 };
+
+// Check if window is defined (i.e., client-side)
+if (typeof window !== 'undefined') {
+  const storedExpenses = localStorage.getItem('expenses');
+  if (storedExpenses) {
+    initialState.expenses = JSON.parse(storedExpenses);
+  }
+}
 
 const expensesSlice = createSlice({
   name: 'expenses',
@@ -22,18 +30,24 @@ const expensesSlice = createSlice({
   reducers: {
     addExpense: (state, action: PayloadAction<Expense>) => {
       state.expenses.push(action.payload);
-      localStorage.setItem('expenses', JSON.stringify(state.expenses));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('expenses', JSON.stringify(state.expenses));
+      }
     },
     editExpense: (state, action: PayloadAction<Expense>) => {
       const index = state.expenses.findIndex((expense) => expense.id === action.payload.id);
       if (index !== -1) {
         state.expenses[index] = action.payload;
-        localStorage.setItem('expenses', JSON.stringify(state.expenses));
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('expenses', JSON.stringify(state.expenses));
+        }
       }
     },
     deleteExpense: (state, action: PayloadAction<string>) => {
       state.expenses = state.expenses.filter((expense) => expense.id !== action.payload);
-      localStorage.setItem('expenses', JSON.stringify(state.expenses));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('expenses', JSON.stringify(state.expenses));
+      }
     },
   },
 });

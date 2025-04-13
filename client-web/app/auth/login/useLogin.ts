@@ -55,7 +55,7 @@ export const useLogin = () => {
         localStorage.removeItem('session');
       }
     }
-  }, []);
+  }, [router]);
 
   return { form, handleChange, handleSubmit, loading };
 };

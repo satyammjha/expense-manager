@@ -3,6 +3,8 @@ import { Toaster } from 'sonner';
 import './globals.css';
 import { AppWrapper } from '@/providers/app-wrapper';
 import Navbar from '@/components/navbar';
+import { ThemeProvider } from '@/providers/theme-providers';
+
 
 export const metadata: Metadata = {
   title: {
@@ -19,9 +21,13 @@ const RootLayout = ({
 }>) => (
   <html lang="en">
     <body className="max-h-screen bg-background font-sans antialiased">
-      <Toaster position="top-center" richColors />
-      <Navbar />
-      <AppWrapper>{children}</AppWrapper>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <Toaster position="top-center" richColors />
+        <AppWrapper>
+          {children}
+
+        </AppWrapper>
+      </ThemeProvider>
     </body>
   </html>
 );
